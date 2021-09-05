@@ -20,7 +20,7 @@ import {
   Switch,
   // useHistory,
   // useLocation,
-  // useRouteMatch,
+  useRouteMatch,
   // useParams,
   // withRouter,
   // Redirect
@@ -30,7 +30,6 @@ import HomePage from './pages/HomePage'
 import UserPage from './pages/UserPage'
 import LoginPage from './pages/LoginPage'
 import _404Page from './pages/_404Page'
-import { useState } from 'react'
 
 function App() {
   return (
@@ -62,25 +61,15 @@ export default App
 
 // 嵌套路由
 function Product() {
-  const [confirm, setConfirm] = useState(true)
-  // const match = useRouteMatch()
-  // console.log('match', match) //sy-log
-  // const { params, url } = match
-  // const { id } = params
+  const match = useRouteMatch()
+  const { params, url } = match
+  const { id } = params
   return (
     <div>
-      <h1>Search</h1>
-      {/* <h1>Search-{id}</h1>
+      <h1>商品</h1>
+      <h1>商品-{id}</h1>
       <Link to={url + '/detail'}>详情</Link>
-      <Route path={url + '/detail'} component={Detail} /> */}
-
-      {/* <Prompt
-        when={confirm}
-        // message="Are you sure you want to leave?"
-        message={(location) => {
-          return 'Are you sure you want to leave-fun'
-        }}
-      /> */}
+      <Route path={url + '/detail'} component={Detail} />
     </div>
   )
 }
@@ -108,16 +97,4 @@ function Detail(props) {
       <h1>detail</h1>
     </div>
   )
-}
-
-// route渲染： children > component > render
-function children(props) {
-  console.log('children props', props) //sy-log
-
-  return <div>children</div>
-}
-
-function render(props) {
-  console.log('render props', props) //sy-log
-  return <div>render</div>
 }
