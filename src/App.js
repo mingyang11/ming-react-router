@@ -1,29 +1,10 @@
 import React, { Component } from 'react'
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Link,
-//   Switch,
-//   // Redirect,
-//   // useHistory,
-//   // useLocation,
-//   useRouteMatch,
-//   // useParams,
-//   // withRouter,
-//   Prompt,
-// } from 'react-router-dom'
-
 import {
   BrowserRouter as Router,
   Route,
   Link,
   Switch,
-  // useHistory,
-  // useLocation,
-  useRouteMatch,
-  // useParams,
-  // withRouter,
-  // Redirect
+  withRouter,
 } from './ym-react-router-dom'
 
 import HomePage from './pages/HomePage'
@@ -60,35 +41,35 @@ function App() {
 export default App
 
 // 嵌套路由
-function Product() {
-  const match = useRouteMatch()
-  const { params, url } = match
-  const { id } = params
-  return (
-    <div>
-      <h1>商品</h1>
-      <h1>商品-{id}</h1>
-      <Link to={url + '/detail'}>详情</Link>
-      <Route path={url + '/detail'} component={Detail} />
-    </div>
-  )
-}
-
-// @withRouter
-// class Product extends Component {
-//   render() {
-//     const {match} = this.props;
-//     const {params, url} = match;
-//     const {id} = params;
-//     return (
-//       <div>
-//         <h1>Search-{id}</h1>
-//         <Link to={url + "/detail"}>详情</Link>
-//         <Route path={url + "/detail"} component={Detail} />
-//       </div>
-//     );
-//   }
+// function Product() {
+//   const match = useRouteMatch()
+//   const { params, url } = match
+//   const { id } = params
+//   return (
+//     <div>
+//       <h1>商品</h1>
+//       <h1>商品-{id}</h1>
+//       <Link to={url + '/detail'}>详情</Link>
+//       <Route path={url + '/detail'} component={Detail} />
+//     </div>
+//   )
 // }
+
+@withRouter
+class Product extends Component {
+  render() {
+    const { match } = this.props
+    const { params, url } = match
+    const { id } = params
+    return (
+      <div>
+        <h1>Search-{id}</h1>
+        <Link to={url + '/detail'}>详情</Link>
+        <Route path={url + '/detail'} component={Detail} />
+      </div>
+    )
+  }
+}
 
 function Detail(props) {
   console.log('detail', props) //sy-log
